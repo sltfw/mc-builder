@@ -74,8 +74,8 @@ def generate_house(style="木頭", width=10, length=10, height=6, name="我的�
         reg[ox + w - 1, y, mid_z - 1] = glass_pane
         reg[ox + w - 1, y, mid_z]     = glass_pane
 
-    # Door opening (front wall, ground level)
-    door_x = ox + w // 2 - 1
+    # Door opening (front wall, left side to avoid window conflict)
+    door_x = ox + 2
     reg[door_x, 1, oz] = air
     reg[door_x, 2, oz] = air
 
@@ -114,7 +114,7 @@ def generate_house(style="木頭", width=10, length=10, height=6, name="我的�
     cx = ox + w // 4
     cz = oz + l // 2 - 1
     chimney_top = wall_top + peak + 2
-    for y in range(wall_top - 1, chimney_top):
+    for y in range(wall_top, chimney_top):
         reg[cx,     y, cz]     = chimney_b
         reg[cx + 1, y, cz]     = chimney_b
         reg[cx,     y, cz + 1] = chimney_b
