@@ -216,9 +216,11 @@ def ai_generate():
     schem.save(buf)
     buf.seek(0)
 
+    import urllib.parse
     from flask import Response
+    safe_name = urllib.parse.quote(name + ".litematic")
     response = Response(buf.read(), mimetype="application/octet-stream")
-    response.headers["Content-Disposition"] = f'attachment; filename="{name}.litematic"'
+    response.headers["Content-Disposition"] = f"attachment; filename*=UTF-8''{safe_name}"
     return response
 
 if __name__ == "__main__":
