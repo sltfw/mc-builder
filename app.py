@@ -216,11 +216,9 @@ def ai_generate():
     schem.save(buf)
     buf.seek(0)
 
-    summary = params.get("summary", "")
     from flask import Response
     response = Response(buf.read(), mimetype="application/octet-stream")
     response.headers["Content-Disposition"] = f'attachment; filename="{name}.litematic"'
-    response.headers["X-Building-Info"] = summary.encode('utf-8').decode('latin-1') if summary else ""
     return response
 
 if __name__ == "__main__":
